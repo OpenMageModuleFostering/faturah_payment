@@ -1,0 +1,16 @@
+{
+    "name": "OpenMageModuleFostering/Faturah_Payment",
+    "type": "magento-module",
+    "license": "OSL",
+    "homepage": "",
+    "description": "This extension will allow your customers to use Faturah payment gateway.",
+    "authors": [
+    {
+        "name": "Moe",
+        "email": "moe@shopgo.me"
+    }
+],
+    "suggest": {
+        "magento-hackathon/magento-composer-installer": "*"
+    }
+}

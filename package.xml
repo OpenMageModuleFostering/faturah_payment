@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package>
+    <name>Faturah_Payment</name>
+    <version>0.0.1</version>
+    <stability>stable</stability>
+    <license>OSL</license>
+    <channel>community</channel>
+    <extends/>
+    <summary>This extension will allow your customers to use Faturah payment gateway.</summary>
+    <description>This extension adds (Faturah Payment Gateway) option to your store payment methods. Upon adding this extension to your store, your customers will be able to complete payment through Faturah Gateway. This extension is customizable as you can configure it to meet your needs. Additionally, it allows you to add the requirements settings for your Faturah merchant account.</description>
+    <notes>Faturah Payment Gateway first release 0.0.1 </notes>
+    <authors><author><name>Moe</name><user>Ghashim</user><email>moe@shopgo.me</email></author></authors>
+    <date>2013-12-17</date>
+    <time>09:01:11</time>
+    <contents><target name="magedesign"><dir name="frontend"><dir name="base"><dir name="default"><dir name="template"><dir name="faturah"><dir name="pay"><file name="redirect.phtml" hash="deb26ac3190d5d8d3c78ef35ea462dfa"/><file name="response.phtml" hash="640ef81196fbb2497eb8eb76291cc49c"/><file name="success.phtml" hash="75d285b7fb8b9e84dbd517ac431de774"/></dir></dir></dir></dir></dir></dir></target><target name="magecommunity"><dir name="Faturah"><dir name="Pay"><dir name="Adminhtml"><dir name="Model"><dir name="System"><dir name="Config"><dir name="Source"><file name="Currencyoptions.php" hash="1f58ccf3f16e5a2938e60f8fdc872cec"/><file name="Languageoptions.php" hash="e2f2e44a0a6ea8bbf238a31546d64e13"/></dir></dir></dir></dir></dir><dir name="controllers"><file name="PaymentController.php" hash="bd854027d56a066179e74674d59cfb08"/></dir><dir name="etc"><file name="config.xml" hash="ab5fb212f858c8b956fce4c9efc6d67d"/><file name="system.xml" hash="eddf406f2fbcb7b8b3398754143732cf"/></dir><dir name="Helper"><file name="Data.php" hash="7a515365e2c1405b2cc24a5ddff4ddd9"/></dir><dir name="Model"><file name="Pay.php" hash="261b4dd0e0bc462f35709751d9546d50"/><dir name="Service"><file name="Quote.php" hash="bb70e67729a46fd5cc432f1ed87b44ef"/></dir></dir></dir></dir></target></contents>
+    <compatible/>
+    <dependencies><required><php><min>5.1.0</min><max>6.0.0</max></php></required></dependencies>
+</package>
