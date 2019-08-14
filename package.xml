@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package>
     <name>Faturah_Payment</name>
-    <version>0.0.2</version>
+    <version>0.0.3</version>
     <stability>stable</stability>
     <license>OSL</license>
     <channel>community</channel>

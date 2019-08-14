@@ -20,7 +20,7 @@ $_order->setState(Mage_Sales_Model_Order::STATE_PENDING_PAYMENT, true, 'Order to
 
 
 // Convert currency to SAR
-//$total = round(Mage::helper('directory')->currencyConvert($total, 'USD', 'SAR'), 2);
+$total = round(Mage::helper('directory')->currencyConvert($_order->getBaseGrandTotal(), 'USD', 'SAR'), 2);
 $shipping_amount = round(Mage::helper('directory')->currencyConvert($_order->getBaseShippingAmount(), 'USD', 'SAR'), 2);
 
 //$baseSubtotal = $_order->getBaseGrandTotal() - $_order->getBaseShippingAmount();
@@ -52,7 +52,7 @@ $items = $_order->getAllItems();
 foreach ($items as $item) {
 	$product = Mage::getModel('catalog/product')->load($item->getProductId());
 	$items_name[] = $product->getName();
-    $items_description[] = substr(htmlentities($product->getDescription()), 0, 50);
+    $items_description[] = mb_substr(htmlentities($product->getDescription(), ENT_QUOTES, 'UTF-8'), 0, 50, 'utf-8');
     $items_qty[] = $item->getQtyOrdered();
     /*if($test_mode) {
 		$items_price[] = round(1, 2);
@@ -73,7 +73,7 @@ foreach ($items as $item) {
     <input type="hidden" name="mc" value="<?php echo $merchant_code ?>" />
     <input type="hidden" name="mt" value="<?php echo $tokenGUID ?>" />
     <input type="hidden" name="dt" value="<?php echo date('m/d/Y h:i:s A') ?>" />
-    <input type="hidden" name="a" value="<?php echo $subtotal ?>" />
+    <input type="hidden" name="a" value="<?php echo $total ?>" />
 <!--
     <input type="hidden" name="DeliveryCharge" value="<?php echo $shipping_amount ?>" />
 -->
