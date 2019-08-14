@@ -15,13 +15,19 @@ $payment->setAdditionalData($tokenGUID)
 
 $_order->setState(Mage_Sales_Model_Order::STATE_PENDING_PAYMENT, true, 'Order token: ' . $tokenGUID);
 
-$total = round($_order->getBaseGrandTotal(), 2);
-$shipping_amount = $_order->getShippingAmount();
+// $total = round($_order->getBaseGrandTotal(), 2);
+// $shipping_amount = $_order->getShippingAmount();
 
 
 // Convert currency to SAR
-$total = round(Mage::helper('directory')->currencyConvert($total, 'USD', 'SAR'), 2);
-$shipping_amount = round(Mage::helper('directory')->currencyConvert($_order->getShippingAmount(), 'USD', 'SAR'), 2);
+//$total = round(Mage::helper('directory')->currencyConvert($total, 'USD', 'SAR'), 2);
+$shipping_amount = round(Mage::helper('directory')->currencyConvert($_order->getBaseShippingAmount(), 'USD', 'SAR'), 2);
+
+//$baseSubtotal = $_order->getBaseGrandTotal() - $_order->getBaseShippingAmount();
+$subtotal = round(Mage::helper('directory')->currencyConvert($_order->getBaseSubtotal(), 'USD', 'SAR'), 2);
+
+// var_dump($_order->getBaseSubtotal());
+// exit();
 
 // testing amount
 $test_mode = Mage::getStoreConfig('payment/faturah/sandbox_mode');
@@ -53,7 +59,10 @@ foreach ($items as $item) {
 	} else {
 		$items_price[] = round(Mage::helper('directory')->currencyConvert(round($item->getPrice(), 2), 'USD', 'SAR'), 2);
 	}*/
-    $items_price[] = round(Mage::helper('directory')->currencyConvert(round($item->getPrice(), 2), 'USD', 'SAR'), 2);
+    // var_dump(round($item->getBasePrice()));
+    // exit();
+
+    $items_price[] = round(Mage::helper('directory')->currencyConvert(round($item->getBasePrice()), 'USD', 'SAR'), 2) . ' SR';
     $items_id[] = $item->getProductId();
 }
 
@@ -64,11 +73,11 @@ foreach ($items as $item) {
     <input type="hidden" name="mc" value="<?php echo $merchant_code ?>" />
     <input type="hidden" name="mt" value="<?php echo $tokenGUID ?>" />
     <input type="hidden" name="dt" value="<?php echo date('m/d/Y h:i:s A') ?>" />
-    <input type="hidden" name="a" value="<?php echo $total ?>" />
+    <input type="hidden" name="a" value="<?php echo $subtotal ?>" />
 <!--
     <input type="hidden" name="DeliveryCharge" value="<?php echo $shipping_amount ?>" />
 -->
-    <input type="hidden" name="DeliveryCharge" value="<?php echo 0 ?>" />
+    <input type="hidden" name="DeliveryCharge" value="<?php echo $shipping_amount ?>" />
     <input type="hidden" name="ProductID" value="<?php echo implode("|", $items_id) ?>" />
     <input type="hidden" name="ProductName" value="<?php echo implode("|", $items_name) ?>" />
     <input type="hidden" name="ProductQuantity" value="<?php echo implode("|", $items_qty) ?>" />
@@ -80,3 +89,4 @@ foreach ($items as $item) {
 <script type="text/javascript">
 	document.faturahpaymentform.submit();
 </script>
+
